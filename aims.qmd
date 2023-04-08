@@ -5,25 +5,31 @@ bibliography: references.bib
 csl: nature.csl
 format:
   pdf:
+    cite-method: biblatex
     toc: false
+    fig.pos: 'H'
     number-sections: true
     link-citations: true
     colorlinks: true
     fontsize: 12pt
     geometry:
     - top=19.05mm
-    - left=19.05mm
-    - right=19.05mm
+    - left=12.7mm
+    - right=12.7mm
     - bottom=31.75mm
+    include-in-header:
+      text: |
+        \usepackage{float}
+
 ---
 
 # Specific Aims {.unnumbered}
 
 &nbsp;&nbsp;&nbsp;&nbsp;Parallel technological advances in molecular biology and microscopy have dramatically increased the ease with which experimental biologists can make spatially resolved measurements of large numbers of proteomic or transcriptomic features. These high-fidelity molecular mapping techniques are promising to catalog the enormous diversity of cell types in  complex organs like the brain, whose cellular heterogeneity has been recognized since the early work of Ramon y Cajal [@y_cajal_texture_1999]. These new capabilities are the focus of large scale collaborations facilitated by the NIH BRAIN initiative[@noauthor_nih_2022], which aim to precisely elucidate the structural organization of the brain by generating multimodal, cross-species datasets for comparison. The datasets that will result from these projects will be unprecedented in size and complexity. They will require new and innovative computational techniques to organize and analyze, but will transform our understanding of the molecular and cellular organizing principles of the brain. 
 
-&nbsp;&nbsp;&nbsp;&nbsp;Two principal focus areas in the neuroscience community's investigation of these relationships are variation in gene expression[@tasic_shared_2018] and connectivity[@oh_mesoscale_2014; @sun_integrating_2021], and how they interact in the circuitry of the brain. For example, single-cell RNA sequencing (scRNA-seq) has been enormously impactful for our ability to catalog neuronal variation[@tasic_shared_2018], but to date it is unclear how subclasses observed in scRNA-seq correspond to graded connectivity differences, such as those found in the cornu ammonis (CA) of the hippocampus[@cembrowski_dissociable_2018]. Reconciling these two perspectives requires an understanding of the cell types that make up a given region of the brain and how they interact in neural circuits. 
+&nbsp;&nbsp;&nbsp;&nbsp;Two principal focus areas in the neuroscience community's investigation of these relationships are variation in gene expression[@tasic_shared_2018] and connectivity[@oh_mesoscale_2014; @sun_integrating_2021], and how they interact in the circuitry of the brain. For example, single-cell RNA sequencing (scRNA-seq) has been enormously impactful for our ability to catalog neuronal variation[@tasic_shared_2018], but to date it is unclear how graded transcriptomic variability observed in scRNA-seq overlays onto differences observed in higher order modalities such as function or connectivity. In Cembrowski et al. (2019)[@cembrowski_heterogeneity_2019], for example, graded differences in connectivity in hippocampal subfield cells of the cornu ammonis (CA) correspond with connectivity and functional differences[@cembrowski_dissociable_2018; @cembrowski_heterogeneity_2019]. Reconciling these perspectives would allow for a comprehensive account of the molecular components and configuration of the elements of neural circuits and comprise an important resource for experimental and systems neuroscience to the substrates of neural function.
 
-&nbsp;&nbsp;&nbsp;&nbsp;One approach to understanding the composition of these circuits is to identify subregions detected in large scale datasets such as spatial transcriptomics. In this case a functional subregion can be defined as a  distinct pattern of gene expression variation that can be used for categorization of a subgroup of cells. In the larger field of computational biology, a variety of unsupervised and supervised machine learning techniques have been developed for extraction of latent features for spatial clustering or subregion detection in spatial imaging data[@walker_deciphering_2022], but these methods typically target 2D tissue sections, and incorporate assumptions that are not ideal for analysis of 3D volumetric data or neural cell types, such as interactions only on a small spatial scale[@townes_nonnegative_2023; @brbic_annotation_2022; @zhao_spatial_2021; @velten_identifying_2022]. In addition, there are few techniques suited for multimodal data integration of spatial imaging data, with most methods focusing on spatial transcriptomics exclusively. 
+&nbsp;&nbsp;&nbsp;&nbsp;One approach to understanding the composition of these circuits is to identify the major spatial components, or subregions detected in large scale datasets such as spatial transcriptomics. In this case a functional subregion can be defined as a  distinct pattern of gene expression variation that can be used for categorization of a subgroup of cells. In the larger field of computational biology, a variety of unsupervised and supervised machine learning techniques have been developed for extraction of latent features for spatial clustering or subregion detection in spatial imaging data[@walker_deciphering_2022], but these methods typically target 2D tissue sections, and incorporate assumptions that are not ideal for analysis of 3D volumetric data or neural cell types, such as interactions only on a small spatial scale[@townes_nonnegative_2023; @brbic_annotation_2022; @zhao_spatial_2021; @velten_identifying_2022]. In addition, there are few techniques suited for multimodal data integration of spatial imaging data, with most methods focusing on spatial transcriptomics exclusively. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;I propose to address this unmet need by developing and applying new computational methods for machine learning-based spatial subregion detection and multimodal data integration to large scale datasets from the Allen Institute for Brain Science[@yao_high-resolution_2023; @oh_mesoscale_2014; @lein_genome-wide_2007] and the Broad Institute[@langlieb_cell_2023]. I will use these techniques to map the structure and organization of these subregions in the mouse brain. I will also establish an interpretable statistical framework to map transcriptomic correlates and drivers of differential connectivity, leveraging the single-cell resolution of emerging spatial transcriptomic datasets. I hypothesize that continuous or graded gradients of gene expression that have been observed in well-characterized regions such as the hippocampus[@cembrowski_heterogeneity_2019] are prevalent throughout the brain and can be more readily identified in spatial imaging data than in non-spatial datasets. 
 
@@ -34,14 +40,10 @@ format:
 ## Aim 2: Determine transcriptomic and non-neuronal cell-type determinants of differential connectivity across the brain by integrating the Allen Mouse Connectivity Atlas with spatial transcriptomics datasets {.unnumbered}
 
 &nbsp;&nbsp;&nbsp;&nbsp;First, I will a use a predictive regression model for association of connectivity patterns in the Allen Mouse Connectivity Atlas[@oh_mesoscale_2014] with single-cell transcriptomes measured in Yao et al.[@yao_high-resolution_2023] and Langlieb et al[@langlieb_cell_2023]. I will use this model to identify whether there are significant genes or gene modules that are predictive of differential connectivity among neurons. In addition I will identify whether this method can recapitulate an existing finding[@economo_distinct_2018] that distinct transcriptomic classes of layer-5 pyramidal tract (PT) neurons are almost exclusively connected to one of either the thalamus or medulla. Systematic identification of the gene expression correlates of connectivity will give insight into the laws by which the brain constructs and constrains neural circuitry.  
-  
-
-
-
 
 # Background
 
-&nbsp;&nbsp;&nbsp;&nbsp;From the first neuroanatomical studies[@y_cajal_texture_1999], it has been recognized that although cells can be broadly grouped into high-level categories (like neurons, or glia), even visual inspection of silver-stained cells is sufficient to identify a diverse array of cellular subtypes. Originally, these cells were observed to primarily diverge based on their morphology and connection to other cells,  however the development of new molecular techniques has revealed new axes by which these cells vary. Understanding the role of this diversity in facilitating the complex computations the brain performs remains one of the fundamental projects of modern neuroscience research. However, the scope and complexity of this project has increased in the modern 'omics age due to the accessibility of high dimensional molecular measurement tools. In particular, the ubiquity of high-fidelity molecular imaging data provides a unique opportunity to study the correspondence between our current and previous understanding of the organizing principles of brain structure and the patterns that can be identified in new datasets using statistical machine learning techniques. 
+&nbsp;&nbsp;&nbsp;&nbsp;From the first neuroanatomical studies[@y_cajal_texture_1999], it has been recognized that although cells can be broadly grouped into high-level categories (like neurons, or glia), even visual inspection of silver-stained cells is sufficient to identify a diverse array of cellular subtypes. Originally, these cells were observed to primarily diverge based on their morphology and connection to other cells, however the development of new molecular techniques has revealed new axes by which these cells vary. Understanding the role of this diversity in facilitating the complex computations the brain performs remains one of the fundamental projects of modern neuroscience research. However, the scope and complexity of this project has increased in the modern 'omics age due to the accessibility of high dimensional molecular measurement tools. In particular, the ubiquity of high-fidelity molecular imaging data provides a unique opportunity to study the correspondence between our current and previous understanding of the organizing principles of brain structure and the patterns that can be identified in new datasets using statistical machine learning techniques. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;Large scale molecular atlases such as the Allen Brain Atlas[@lein_genome-wide_2007] (ABA) and Allen Mouse Connectivity Atlas[@oh_mesoscale_2014] (ACA) have been critical tools to study the molecular organization of the brain. The ABA data uses one-at-a-time ISH to spatially map the expression of several thousand genes in the mouse brain.The ACA is a large scale imaging dataset where both cell-type specific and pan-neuron AAV vectors are used as tracers to map the connectivity of neurons to a source site, focusing on the right hemisphere. The integration of automated high-throughput data collection methods, comprehensive informatics, and fully open data sharing have facilitated an enormous number of studies (as measured by the 3,474 citations of the original Allen Brain Atlas Paper [as of 2023-02-18]). These datasets were integral to the development of the Allen Common Coordinate Framework (CCF)[@wang_allen_2020], a systematic effort to integrate gene expression, connectivity, transgenic expression, and histology to generate a neuroanatomical consensus structural labeling. This effort brought together a large team of neuroanatomists to develop a consensus spatial parcellation of the brain into known regions based on manual inspection of different data sources. The CCF is a highly important resource for neuroscientists, helping at the level of both hypothesis generation (for example, to identify regions of interest with respect to one or several molecular characteristics) or for hypothesis confirmation (to visualize distribution of certain features identified in an experiment). However, its creation was heavily manual, requiring a consensus of several expert neuroanatomists. Creating a new CCF from  emerging datasets using novel technologies would require significant effort: therefore, development of computational techniques to organize and integrate new datasets in the mouse brain would be an important resource for neuroscientists.
 
@@ -51,7 +53,7 @@ format:
 
 &nbsp;&nbsp;&nbsp;&nbsp;Application of existing computational methods to integrate and identify major features in spatial transcriptomics datasets is limited by their large scale and sparse spatial structure. An attractive class of methods for spatial pattern discovery and multimodal data integration, for example for spatial transcriptomics data, utilizes Gaussian processes[@velten_identifying_2022; @townes_nonnegative_2023]. These models are attractive because of their ability to incorporate prior knowledge on the form of the covariance between data observations in space. However, for 3D data with uneven spatial sampling it becomes harder to specify this relationship. For example, it is not obvious that the spatial correlation along the anterior-posterior axis should match, for example, the dorsal-ventral axis. In addition, Gaussian processes scale with O($n^3$) and existing methods cannot easily scale beyond several tens of thousands of cells[@townes_nonnegative_2023], making these methods unsuitable for region discovery in 3D whole-brain mouse transcriptomic datasets. An emerging perspective in modeling cells in space uses graph-neural networks[@brbic_annotation_2022]. In these models, a spatial cell neighborhood is created and networks can be optimized for supervised cell type prediction or using self-supervised learning (learning to predict characteristics of a hidden cell from its neighbors). However, these networks as implemented currently require construction of a spatial neighborhood of cells via thresholded distance. The construction of this cellular neighborhood graph in the brain is likely to incorporate many ad-hoc decisions; for example, it may not be desirable to have neurons that are spatially close be connected in a cell neighborhood graph, and it may be difficult to assign edge connections between neurons and various types of glia. A promising class of alternative methods are derived from non-negative matrix factorization[@thompson_genomic_2008; @wu_stability-driven_2016; @lee_learning_1999] (NMF), which has previously been employed for spatial pattern identification in imaging data but not been adapted to the highly sparse, large scale setting of 3D spatial transcriptomics. A significant benefit of approaches derived from NMF is that it is possibly to easily visually interpret the factors.
   
-&nbsp;&nbsp;&nbsp;&nbsp;In order to comprehensively catalog the transcriptomic and connectomic diversity of the mouse brain, the proposed research will create new computational methods that addresses these limitations. A comprehensive parcellation of transcriptome-defined subregions in the brain will be defined by developing a novel interpretable machine learning algorithm for latent variable discovery and then segmentation of the brain. By then leveraging the single-cell resolution of emerging spatial transcriptomics datasets, I will analyze the specific gene gradients that contribute to these parcels. I will also utilize the single-cell measurements provided in these new datasets to conduct an association analysis of connectivity patterns and transcriptomic variation across the brain, to characterize whether gene expression gradients are attributable to differential connectivity patterns, as has been observed in some regions such as the hippocampus[@bienkowski_integration_2018].
+&nbsp;&nbsp;&nbsp;&nbsp;In order to comprehensively catalog the transcriptomic and connectomic diversity of the mouse brain, the proposed research will create new computational methods that addresses these limitations. A comprehensive parcellation of transcriptome-defined subregions in the brain will be defined by developing a novel interpretable machine learning algorithm for latent variable discovery and then segmentation of the brain. By then leveraging the single-cell resolution (see @tbl-datasets for a review of datasets used in this proposal) of emerging spatial transcriptomics datasets, I will analyze the specific gene gradients that contribute to these parcels. I will also utilize the single-cell measurements provided in these new datasets to conduct an association analysis of connectivity patterns and transcriptomic variation across the brain, to characterize whether gene expression gradients are attributable to differential connectivity patterns, as has been observed in some regions such as the hippocampus[@bienkowski_integration_2018].
 
 # Aim 1: Establish a method for the parcellation and analysis of transcriptomic imaging data
 
@@ -59,74 +61,129 @@ format:
 
 ## Aim 1.1: Development and validation of an autoencoder approach for subregion discovery
 
-&nbsp;&nbsp;&nbsp;&nbsp;I will build off of previous work performed by our lab[@cahill_unsupervised_2023] and others[@wu_stability-driven_2016] that poses region discovery as a latent variable discovery problem. In both works, an NMF approach is used to identify spatial factors that are optimal for reconstruction. I am a co-author on the former work (Cahill et al.) where we applied this approach (which we call ontology-stability NMF, or osNMF) to the Allen Brain Atlas dataset, however it has yet to be tested and refined on larger datasets such as the above spatial transcriptomics datasets. 
+&nbsp;&nbsp;&nbsp;&nbsp;I will build off of previous work performed by our lab[@cahill_unsupervised_2023] and others[@wu_stability-driven_2016] that poses region discovery as a latent variable discovery problem. In both works, an NMF approach is used to identify spatial factors that are optimal for reconstruction. I am a co-author on the former work (Cahill et al.) where we applied this approach (which we call ontology-stability NMF, or osNMF, see @fig-osnmf) to the Allen Brain Atlas dataset, however it has yet to be tested and refined on larger datasets such as the above spatial transcriptomics datasets. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;An important modeling decision in factor analysis is the choice of inner dimension, or number of factors $k$. In order to guide this decision, we adopt the stability-driven framework of Wu et al.[@wu_stability-driven_2016], where our algorithm is repeatedly fit on bootstrapped partitions of the data at different choices of $k$. The stability of the iterations is quantified using an Amari-like measure, which computes a distance between two factorization solutions through the sum of the absolute values of the row and column maxima of their cross-correlation matrix. 
 
-&nbsp;&nbsp;&nbsp;&nbsp;In a proof-of-concept analysis on the Yao et al. dataset I applied the osNMF technique. I conducted a sparse stability analysis, screening values of $k$ between 5 and 25. This initial analysis identified an optimal value of 18 factors across the whole brain. Because of the large size of the dataset, I downsampled the dataset from a coronal-slice resolution of 10 $\mu\mathrm{m}$ to 40 $\mu\mathrm{m}$. After binarizing the patterns to 18 for visualization, it was not clear by visual inspection that osNMF was able to resolve hippocampal subfields @fig-osnmf. 
+&nbsp;&nbsp;&nbsp;&nbsp;In a proof-of-concept analysis on the Yao et al. dataset I applied the osNMF technique. I conducted a sparse stability analysis, screening values of $k$ between 5 and 25. This initial analysis identified an optimal value of 18 factors across the whole brain. Because of the large size of the dataset, I downsampled the dataset from a coronal-slice resolution of 10 $\mu\mathrm{m}$ to 40 $\mu\mathrm{m}$. After binarizing the patterns to 18 for visualization, it was not clear by visual inspection that osNMF was able to resolve hippocampal subfields @fig-nmfpatterns. 
 
-&nbsp;&nbsp;&nbsp;&nbsp;Because of the inability of osNMF to resolve the desired hippocampal architecture, I introduced two changes. First, I implemented an autoencoder approach using 2-3 layers parameterized by 3D-convolutions instead of linear projection into low dimension, as in NMF. I include a ReLU activation in the last layer prior to a linear projection into native image spatial dimension for reconstruction. By constraining this last layer of neurons' weights to be strictly positive, and since the last layer activations are also constrained to be positive, we retain the interpretation of a "parts-based" positive representation that ordinary NMF is characterized. When a network with this architecture was trained on downsampled image data (for comparison with osNMF), again with $k\ =\ \text{18}$, hippocampal patterns were better resolved@fig-cnn. While the osNMF patterns do not resolve CA1, and CA3, they are delineated in the autoencoder-derived patterns (CA3 appears as two patterns, which is supported by findings of strong gene expression gradients within pyramidal cells along CA3@cembrowski_heterogeneity_2019).
+&nbsp;&nbsp;&nbsp;&nbsp;Because of the inability of osNMF to resolve the desired hippocampal architecture, I introduced two changes. First, I implemented an autoencoder approach using 2-3 layers parameterized by 3D-convolutions instead of linear projection into low dimension, as in NMF. I include a ReLU activation in the last layer prior to a linear projection into native image spatial dimension for reconstruction. By constraining this last layer of neurons' weights to be strictly positive, and since the last layer activations are also constrained to be positive, we retain the interpretation of a "parts-based" positive representation that ordinary NMF is characterized. See @tbl-nn for a specific enumeration of the layers in the neural n etwork. When a network with this architecture was trained on downsampled image data (for comparison with osNMF), again with $k\ =\ \text{18}$, hippocampal patterns were better resolved@fig-cnnpatterns. While the osNMF patterns do not resolve CA1 and CA3 (@fig-nmfpatterns), they are delineated in the autoencoder-derived patterns (CA3 appears as two patterns, which is supported by findings of strong gene expression gradients within pyramidal cells along CA3[@cembrowski_heterogeneity_2019]).
 
-&nbsp;&nbsp;&nbsp;&nbsp;With these initial results in mind, I will continue this analysis by applying the stability-driven autoencoder approach on both the Yao and Langlieb datasets at full spatial resolution. I will compare results from the different capture protocols, as Yao et al. was conducted with MERFISH and Langlieb with Slide-seqV2. I hypothesize that as Slide-seq provides coverage of the whole transcriptome, that we will be able to extract more accurate patterns from that dataset. Once I have extracted gene expression patterns from these datasets, I can compare them with the 
+&nbsp;&nbsp;&nbsp;&nbsp;With these initial results in mind, I will continue this analysis by applying the stability-driven autoencoder approach on both the Yao and Langlieb datasets at full spatial resolution. I will compare results from the different capture protocols, as Yao et al. was conducted with MERFISH and Langlieb with Slide-seqV2. I hypothesize that as Slide-seq provides coverage of the whole transcriptome, that we will be able to extract more accurate patterns from that datasets by comparing with CCF. I will compare the two sets of patterns with the CCF regions using the method in Cahill et al.[@cahill_unsupervised_2023] to quantify the correspondence of the discovered patterns with known brain regions by searching for best matches in the CCF ontology across scales and also compare with correspondence computed with patterns from osNMF. 
 
+## Aim 1.2: Characterization of identified patterns using regression analysis and marker gene identification
 
+&nbsp;&nbsp;&nbsp;&nbsp;In order to interpret the identified patterns, I will take several approaches. First, I will use a penalized regression model to analyze cell type contributions to each pattern. For a given pattern, I will regress the membership strengths (analogous to the weights in the factor or $\mathbf{W}$ matrix in NMF) on cell type counts at each location determined in either Langlieb et al. or Yao et al. For this I hypothesize Yao et al. will be more appropriate due to the subcellular resolution of MERFISH, whereas Langlieb et al. used deconvolution post-hoc to obtain single-cell profiles. By inspecting the coefficients attached to each cell type, I will be able to identify whether a given pattern is primarily driven by a single or a group of cell types. Based on findings from Chen et al.[@chen_modular_2022] using BAR-seq, I expect that the majority of patterns will be determined by gene expression heterogeneity within cell types that are indirectly driven by differences in connectivity across cells.
 
+&nbsp;&nbsp;&nbsp;&nbsp;Second, I will compute last-layer activations (analogous to latent variable loadings in the $\mathbf{H}$ matrix in NMF) for each gene in the Langlieb (Slide-seq) dataset in order to obtain the top-10 most active genes for each pattern. From these I can cross-reference scRNA-seq profiles found by the Allen Brain Institute[@tasic_shared_2018] to identify whether specific cell-types are marked by these spatially variable genes. 
 
+### Concerns and alternate approaches
 
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;In preliminary tests direct application of osNMF towards the Yao et al. dataset does not allow for resolution of subregions in the hippocampus. Both osNMF and 
-
-In addition, because of the voxelwise vectorization of the images prior to the NMF fitting, the latent variable discovery step in osNMF does not directly incorporate spatial correlations between the data. Therefore, I will develop a shallow autoencoder based approach to allow for more flexibility in the latent variable discovery process. In order to maintain the interpretability of NMF, I will constrain the last layer of the autoencoder and the previous layer activations to be strictly positive, allowing direct readout of the neuron weights into spatial patterns. I will use this last layer for our stability characterization, as these are the most directly relevant to the selection of functional subregions. Additionally, in order to incorporate spatial correlations into the latent variable computation, I will use a sparse convolutional encoder. This approach reduces the number of parameters in the neural network compared with an equivalent multilayer perceptron-based autoencoder by roughly 7-fold. I also introduce regularization parameters into the loss function to control the spatial correlation of the spatial patterns, empirically finding this increases accuracy of the reconstructions. A preliminary analysis of this architecture's performance shows (Figure 2) that this new architecture, which we also equip with additional regularization terms, produces factors that allow a coarse regionization of the hippocampus into 
-
-::: {#fig-elephants layout-ncol=2}
-
-![Elephjant](Untitled.png "Title: an elephant"){#fig-osnmf}
-
-![Elephjant2](Untitled.png "Title: an elephant"){#fig-cnn}
-
-something something something
-:::
-
-This work identifies latent variables that are optimal for reconstruction of imaging data, with the former work (where I am a co-author) applied sucessfully to the Allen Brain Atlas dataset. By comparing our latent factors with those found in the CCF, we identify Pearson correlation coefficients of up to 0.73 with regions across a hierarchy of resolutions. We also find that our approach is able to resolve gene gradients that sub-parcellate regions such as the isocortex, displaying the utility of our approach in identifying novel gene expression gradients in 3D spatial data.
-
-&nbsp;&nbsp;&nbsp;&nbsp;In order to augment this work to adapt to the very large scale of the whole-brain spatial transcriptomics data, I will introduce a shallow autoencoder approach instead of using an NMF-like matrix factorization. I will incorporate a strict positivity constraint on the last linear layer of the autoencoder to match the framework of NMF, so that I can  read out the neuron weights in the last layer to visualize the discovered spatial patterns. 
-
-
-
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-
+1. Autoencoder patterns are unstable: In initial testing, we observe visually a high degree of correlation between runs of the autoencoder until $k$ becomes greater than about 25. However, preliminary stability analyses seem to indicate the settled value of $k$ will be less than that. If it becomes necessary to fit a large inner dimension, we can reduce the degree of regularization or reduce the number of layers or parameters to induce greater stability empirically. 
 
 # Aim 2: establish an analysis pipeline for the integration of transcriptomic and connectomic imaging data 
 
+&nbsp;&nbsp;&nbsp;&nbsp;Graded gene expression has been identified as a correlate of connectivity differences across a given subregion, with differences observed in the hippocampus, cortical neurons, and even non-neuronal cells[@cembrowski_heterogeneity_2019]. In order to understand whether the relationships identified in small scale experiments with few cell types generalize, I propose a method based on penalized regression to identify gene expression correlates of differential connectivity in single cells across the brain, leveraging the high spatial resolution of the Yao et al. dataset.
+  
+&nbsp;&nbsp;&nbsp;&nbsp;I will first test the ability of my approach to identify previously determined relationships between single-cell transcriptomic variation in layer 5 pyramidal tract (PT) neurons and differential connectivity to the medulla or thalamus[@economo_distinct_2018]. Economo et al. assayed connectivity using an AAV labeling procedure of layer 5 PT neurons specifically, whereas I will investigate whether connectivity and transcriptomic relationships can be identified reliably in two separate whole-brain datasets (Yao et al. and the Allen Mouse Connectivity Atlas developed by Oh et al.). 
 
-* Existing techniques for multimodal data integration / subregion discovery focus really on 2D, not suited for brain imaging data
-* hypothesis: a small number of gene expression gradients form the hierarchical structure of the mouse brain and can be robustly identified from ST data; these expression gradients also template connectivity patterns across the brain
+&nbsp;&nbsp;&nbsp;&nbsp;First, I will identify the *Slco2a1+* (medulla projecting) and *Hpgd+* (thalamus projecting) positive single cell clusters used in Economo et al. in the Yao et al. dataset (preliminarily, clusters "L5 ET CTX GLUT_1" [877 cells] and "L5 ET CTX GLUT_2" [766 cells]; note that ET refers to extra-telencephalic which is another term for pyramidal tract) using CARD[@ma_spatially_2022], which annotates spatial transcriptomics-derived cell types using reference scRNA-seq atlases. The Allen Mouse Connectivity provides several measures of connectivity between two locations but I will use projection volume, which is defined as the sum of detected pixels of projection to a particular area normalized by both the number of pixels in that area and the total number of intense pixels for that injection. I will then regress projection volume or an indicator variable for connectedness in the medulla and thalamus (the two regions in Economo et al.) on MERFISH transcript counts for the two L5 PT neuron populations. This method is very similar to a method developed in Timonidis et al.[@timonidis_prediction_2020] but has not been extended to single cell data. A differential expression analysis was conducted in Economo et al. for the two populations, identifying several genes that are in the MERFISH gene panel (*Npnt*, *Col8a1*, *Dmkn*, *Sorcs3*, *Cbln2*, *Cxcl12*, *Wipf3*, *Clmp*, *Syt6*, *Ctsc*) and so I will test the above model for its ability to identify these differences. 
 
-aim1: create new comp method for data driven atlas creation to identify key gradients in gene expression across brain 
-* prelim work on non spatial transcriptomic test data
+&nbsp;&nbsp;&nbsp;&nbsp;If succesful at delineating the differences in the two L5 PT populations, I will extend this approach to neurons across the brain. The division of neurons into classes and subclasses has been analyzed and gathered into a taxonomy by researchers at the Allen Brain Institute[@yao_taxonomy_2021; @yao_transcriptomic_2021], where the two PT classes in the previous analysis would be termed H3. H3 is the most granular cluster level, with H1 referring to a division of non-neurons, excitatory neurons, and inhibitory neurons and H2 referring to subclasses of those cells, such as L5 ET cells. For each subclass of cells I will regress projection volume against MERFISH transcriptome counts to determine on a per-cell type basis whether specific genes are correlated with differences in mesoscale connectivity, applying Bonferroni correction to threshold q-values at $q$ = 0.05. I hypothesize that based on the results of Cembrowski et al.[@cembrowski_heterogeneity_2019] that the majority of neuronal cell types will be associated with significant variation in connectivity. Once I have identified these genes I can perform gene-ontology analysis or pathway enrichment analysis to identify biological processes. I can also threshold the top-$n$ of these by magnitude to provide likely marker genes for experimental validation by Retro-seq or ISH. 
 
-aim 1.1 computational method for v large, sparse ST data
-aim 1.2 analysis of cell type contribution to these gradients
+### Concerns and alternate approaches
 
-aim 2: identify correlates of differential connectivity in gene expression
+1. Low correspondence between projection targets in ACA and MERFISH cell segmentation locations: since the connectivity profiling in Oh et al. generated pan-neuronal (or specific Cre driver line-based) connectivity patterns in mice that are separate from the mouse measured in Yao et al., there is a concern that there is a low matching between cells in one dataset and the other, which would correspond to very little discriminative power to identify connectivity-gene relationships. In addition the AAV vector is not guaranteed to label all neurons and so there may be some stochasticity between of random chance in addition to image registration or overall cellular correspondence issues. My expectation is that this will be a relatively minimal effect--mouse-to-mouse variability was measured with repeat injections in Oh et al. for a different mouse, with the lowest $\mathrm{R}^2$ = 0.85 found in the nucleus of the optic tract. Overall the low amount of experimental noise in general suggests that if correspondence is too low at a given level of granularity, then I can average connectivity from a destination voxel to a group of voxels, for example those given by the very small "fine" subregions in the CCF. 
 
-aim 2.1 comp method for multimodal region discovery using connectivity and gene expr data
-aim 2.2 regression analysis of transcriptomic/cell type contributors to differential connectivity
+2. Statistically correlations between connectivity and cell features in regression creates high risk of false positive gene associations: because of the statistical correlation between nearby cells, which presumably will violate the IID assumption of OLS, there is a high risk of false positives in the data. To remedy this I can create a spatial null distribution using Moran spectral randomization[@wagner_generating_2015], an approach that is adopted in functional MRI studies to reduce the effect of spatial autocorrelation in association between spatial patterns. 
+
+4. Association between L5 PT neurons fails: if I am unable to resolve the validation pattern scheme I have set up, then I can switch to a scheme where I identify spatial patterns in the connectivity data and relate those to patterns I identfy in Aim 1 with correlation analysis or post-hoc spatial clustering, or discover them jointly in connectivity and transcriptomic data using an approach similar to Joint and Individual Variation Explained (JIVE)[@lock_joint_2013] or canonical correlation analysis[@hotelling_relations_1936]. 
+
+# Figures and tables
+
+| Dataset | Description | 
+|------:|:-----|
+|   Allen Mouse Brain Atlas[@lein_genome-wide_2007]     |  An in-situ hybridization (ISH) study of 20,000 genes across the brain. The dataset is generated "one-gene-at-a-time", meaning each gene is measured in a separate mouse. The resolution is fairly coarse, provided at 200$\mu$m isotropic resolution. |
+|   Allen Mouse Connectivity Atlas[@oh_mesoscale_2014]  |  A dataset primarily using EGFP labeling across the brain to trace connectivity of different neurons and pan-neuronally. The EGFP is delivered via recombinant adno-associated virus (AAV) that was either implemented using a pan-neuronal expressed construct or using specific *Cre*-driver lines that are meant to express only in specific cell-types. The AAV construct operates by travelng from neuron to neuron in a anterograde manner, so that once injected, the researchers can wait several days and then sacrifice the mouse and image the brain to determine whether neurons in a target location are connected to the injection site. The resolution of this dataset is fairly high, at 25$\mu$m resolution in the transverse-imaging plane. |
+|   Langlieb Slide-SeqV2 dataset[@langlieb_cell_2023]   |  A Slide-seqV2 dataset generated across the brain. In Slide-seqV2 microparticle beads are spatially tagged and then applied to a slide which a tissue section can be applied to. Transcripts are captured through binding to a poly-T sequence applied the beads, which are also barcoded to allow for spatial array indexing. This technique is transcriptome wide, although capture efficiency is relatively low compared with traditional scRNA-seq. This dataset only covers one hemisphere of the adult mouse brain, although the resolution is quite high as the size of the beads is ~10$\u$m.  | 
+|   Yao MERFISH dataset[@yao_high-resolution_2023]      |   A MERFISH dataset generated across both hemispheres of the brain. In MERFISH, specific probe sequences along with a unique combinatorial barcode. During the imaging procedure, the barcodes are read off by sequencing-by-sequencing, where the barcode is designed so as to improve robustness in the decoding process. In Yao et al., 500 genes designed for discrimination between neuronal subtypes w as used to measure gene expression across both hemispheres of the mouse brain.   |
+: Description of relevant datasets for the proposal and background information. {#tbl-datasets}
+
+| Layer | Operation 
+|------:|:-----|
+|    1  | Conv3D: 1x16 filters; 3x3x3 kernel; stride 2; dilation 2 | 
+|    2  | BatchNorm + Dropout |
+|    3  | Conv3d: 16x32 filters; 3x3x3 kernel; stride 1; dilation 2 | 
+|    4  | BatchNorm + Dropout | 
+|    5  | Conv3d: 32x1 filters; 1x1x1 kernel; stride 1; dilation 1 |
+|    6  | Linear layer with neurons output dimension 18| 
+|    7  | Linear layer with neurons output dimension ~32M | 
+: Neural network architecture used in Aim 1. {#tbl-nn}
+
+::: {}
+![Schematic of workflow for osNMF. A stability analysis is used to guide selection of the number of components $k$ for NMF. Figure adapted from Cahill et al. (biorXiv, 2023)](osnmf.png){#fig-osnmf}
+:::
 
 
+::: {layout="[[1,1], [1], [1]]" fig.pos='!p'}
 
+![(a) NMF derived hippocampal factors](nmfpatterns.png){#fig-nmfpatterns}
 
+![(b) CNN derived hippocampal factors](cnnpatterns.png){#fig-cnnpatterns}
 
+![(c) Diagram of hippocampal subfield approximate anatomy, from Cembrowski et al. (2019)](reference.png)
 
+Results of preliminary test of osNMF and CNN-based autoencoder on the Yao et al. MERFISH data. A stability analysis was conducted and used to identify $k$ = 18 factors using osNMF, and both CNN and osNMF models were fit at 18 factors. Patterns were binarized using the highest magnitude coefficient weight at each pixel. Shown in (a) and (b) is a zoom-in on the hippocampal formation with predictions for each method. (c) provides a reference from Cembrowski et al. (2019) of prospective hippocampal subfield anatomy. 
+:::
 
-but existing techniques for spatial subregion detection are poorly suited for analysis of large-scale, 3D imaging data. For example, one common class of methods utilizes spatial Gaussian processes[@townes_nonnegative_2023] with $O(n^3)$ scaling, which is undesirable for large spatial (3D) imaging datasets. Other classes of promising methods would require assumptions to be made about the size of the spatial neighborhood for cellular interaction, which is difficult to assess with serial sections[@brbic_annotation_2022].
+  
+&nbsp;
 
+&nbsp;
 
+&nbsp;
 
-Single-cell sequencing studies[@tasic_shared_2018; @zeisel_molecular_2018; @bandler_single-cell_2022] in the mouse have made significant progress towards charting cell type gradients as defined by transcriptomic content; likewise, computational efforts have been developed for very fine-grained connectivity mapping and clustering[@knox_high-resolution_2018]. Molecular atlases such as the Allen Institute's Common Coordinate Framework[@wang_allen_2020] (CCF) atlas are critical to help organize inquiries into these phenomena by facilitating comparisons across studies and spatial scales. One strength of these atlases is their extensive manual curation, starting from the level of image registration and quality-checking towards consensus decisions by expert anatomists to delineate subregions and their boundaries.
+&nbsp;
 
+&nbsp;
 
+&nbsp;
+  
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp; 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
